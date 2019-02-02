@@ -52,7 +52,7 @@ class IntensityCorrector:
         try:
             d = self.bridge.imgmsg_to_cv2(distance, 'bgr8')
             i = self.bridge.imgmsg_to_cv2(intensity, 'bgr8')
-            product = cv2.multiply(d, cv2.multiply(i, i))
+            product = cv2.multiply(i, cv2.multiply(d, d))
             self.image_pub.publish(self.bridge.cv2_to_imgmsg(product, 'bgr8'))
         except CvBridgeError as e:
             print("ERROR", e)
